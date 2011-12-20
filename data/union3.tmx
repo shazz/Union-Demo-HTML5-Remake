@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="175" height="25" tilewidth="32" tileheight="16">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="16">
-  <image source="sprites/tileset.png" width="704" height="128"/>
+  <image source="../../Union/data/sprites/tileset.png" width="704" height="128"/>
  </tileset>
  <tileset firstgid="177" name="metatiles32x16" tilewidth="32" tileheight="16">
-  <image source="sprites/metatiles32x16.png" width="192" height="16"/>
+  <image source="../../Union/data/sprites/metatiles32x16.png" width="192" height="16"/>
   <tile id="0">
    <properties>
     <property name="type" value="solid"/>
@@ -13163,6 +13163,56 @@
   <object name="DoorEntity" x="672" y="112" width="96" height="112">
    <properties>
     <property name="demo_name" value="TCB1"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="1312" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="DeltaForce"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="1600" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="TNTCrew3"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="1824" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="TCB2"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="2624" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="TNTCrew1"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="3008" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="TheReplicants"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="3520" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="TNTCrew2"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="3936" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="Level16"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="4224" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="TCB3"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="5440" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="Tex"/>
+   </properties>
+  </object>
+  <object name="DoorEntity" x="2208" y="112" width="96" height="112">
+   <properties>
+    <property name="demo_name" value="Hidden"/>
    </properties>
   </object>
  </objectgroup>
