@@ -145,7 +145,10 @@ var PlayScreen = me.ScreenObject.extend(
 		---	*/
 	onDestroyEvent: function()
 	{
-		if (this.YMPlayer.player != null) {
+		me.game.disableHUD();
+		
+		if (this.YMPlayer.player != null) 
+		{
 			// stop the menu music
 			// is this the right way ?
 			CODEF_MUSICPLAYER.stop();
@@ -157,14 +160,17 @@ var PlayScreen = me.ScreenObject.extend(
 
 
 var LogoObject = me.HUD_Item.extend({
-    init: function(x, y) {
+    
+    init: function(x, y) 
+    {
         // call the parent constructor
         this.parent(x, y);
         
         this.logo = me.loader.getImage("logo");
     },
 
-    draw: function(context, x, y) {
+    draw: function(context, x, y) 
+    {
         context.drawImage(this.logo, 194 ,0);
     }
 
