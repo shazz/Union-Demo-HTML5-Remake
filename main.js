@@ -117,6 +117,8 @@ var PlayScreen = me.ScreenObject.extend(
 	
 	onResetEvent: function()
 	{	
+		me.video.clearSurface(me.video.getScreenFrameBuffer(), "black");
+		
 		// use setInterval
 		me.sys.useNativeAnimFrame = false;
 		
