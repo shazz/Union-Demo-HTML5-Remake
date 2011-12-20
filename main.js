@@ -12,7 +12,7 @@ var jsApp	=
 {	
 	// Screen ID when changing state
 	ScreenID : {
-		INTRO : 100, // start at 100 on purpose
+		TODO : 100, // start at 100 on purpose
 	},
 	
 	// last entity position
@@ -76,8 +76,7 @@ var jsApp	=
 		me.state.set(me.state.PLAY, new PlayScreen());
 		
 		// register the various screen;
-		// DemoIntro
-		me.state.set(jsApp.ScreenID.INTRO, new DemoIntro());
+		me.state.set(jsApp.ScreenID.TODO, new todoScreen());
 		
 		// start the game 
 		me.state.change(me.state.PLAY);

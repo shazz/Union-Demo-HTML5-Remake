@@ -95,14 +95,8 @@
 			// doors, by checking the object return by the function.
 			
 			// check if entity is moving
-			if (this.vel.x!=0||this.vel.y!=0)
+			if (this.vel.x!=0 || this.vel.y!=0)
 			{
-				// update objet animation is necessary
-				if (this.isCurrentAnimation("walk") && this.vel.x==0)
-				{
-					// don't update animation
-					return true
-				}
 				this.parent(this);
 				return true;
 			}
@@ -133,10 +127,17 @@
 			if (me.input.isKeyPressed('enter'))
 			{
 				// save the player last pos
-				
 				jsApp.entityPos = obj.pos.clone();
-				//console.log("knock knock " + this.demo_name + "!");
-				//me.state.change(jsApp.ScreenID.INTRO);
+				
+				// if screen exists, go for it !
+				if(!eval("jsApp.ScreenID." + this.demo_name + "==undefined"))
+				{
+					me.state.change(this.demo_name);
+				}
+				else
+				{
+					me.state.change(jsApp.ScreenID.TODO);
+				}
 			}
 		},
 		
