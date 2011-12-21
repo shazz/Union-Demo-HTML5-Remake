@@ -118,7 +118,7 @@
 			this.parent(x, y, settings);
 			
 			// settings.demo_name was defined in Tiled
-			this.demo_name = settings.demo_name;
+			this.demo_name = settings.demo_name.toUpperCase();
 		},	
 
 		// collision notification, something (obj) touched the door !
@@ -130,9 +130,12 @@
 				jsApp.entityPos = obj.pos.clone();
 				
 				// if screen exists, go for it !
+				
+				var test = "jsApp.ScreenID." + this.demo_name;
+				
 				if(!eval("jsApp.ScreenID." + this.demo_name + "==undefined"))
 				{
-					me.state.change(this.demo_name);
+					me.state.change(eval("jsApp.ScreenID." + this.demo_name));
 				}
 				else
 				{

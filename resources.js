@@ -72,5 +72,23 @@ var g_resources = [
 	}*/		
 	
 	
+	// logoUnion
+	{
+		name: "IntroLogoSmallUnion",	
+		type:"image",	
+		src: "screens/intro/logo.png"
+	},
+	// logoUnion
+	{
+		name: "IntroBackground",	
+		type:"image",	
+		src: "screens/intro/bg.png"
+	},
+	// logoUnion
+	{
+		name: "IntroMessage",	
+		type:"image",	
+		src: "screens/intro/letters.png"
+	},	
 	
 ];
