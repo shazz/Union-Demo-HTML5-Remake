@@ -21,7 +21,7 @@ var g_resources = [
 	{
 		name: "background",	
 		type:"image",	
-		src: "data/background/banner.png"
+		src: "data/background/banner4.png"
 	},
 	
 	// main entity
@@ -45,6 +45,33 @@ var g_resources = [
 	    src: "data/background/bannerlogo.png"
 	}, 	
 	
+	// scrollrasters
+	{
+	    name: "scrollrasters",
+	    type: "image",
+	    src: "data/background/scrollrasters.png"
+	}, 	
+	
+	// fonts
+	{
+	    name: "fontsTexIn",
+	    type: "image",
+	    src: "data/fonts/fontsTexIn.png"
+	}, 	
+		
+	// fonts
+	{
+	    name: "fontsTexOut",
+	    type: "image",
+	    src: "data/fonts/fontsTexOut2.png"
+	}, 	
+	
+	// fonts
+	{
+	    name: "panorama",
+	    type: "image",
+	    src: "data/background/panorama.png"
+	}, 		
 	/////////////////////////
 	// todo stuff
 	/////////////////////////
