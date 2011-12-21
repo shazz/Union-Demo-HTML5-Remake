@@ -52,7 +52,7 @@
 			
 			
 			// adjust the collision box
-			this.updateColRect(-1, -1 ,86,22);
+			this.updateColRect(-1, -1 ,82,20);
 
 			
 			// some debugging stuff
