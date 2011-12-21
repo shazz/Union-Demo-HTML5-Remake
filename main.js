@@ -111,7 +111,7 @@ var PlayScreen = me.ScreenObject.extend(
 	
 	init: function()
 	{	
-		this.parent(false)
+		this.parent(true)
 		// init the YM Player
 		this.YMPlayer = new music("YM");	
 	},
@@ -126,11 +126,9 @@ var PlayScreen = me.ScreenObject.extend(
 		// load a level
 		me.levelDirector.loadLevel("menu");
 		
- 		me.game.addHUD(0, 0, 640, 400);
-        	me.game.HUD.addItem("logo", new LogoObject(0, 0));
-        	me.game.HUD.addItem("logo", new ScrollerObject(0, 330));
-        	
-        	me.game.sort();
+		// add the scroller object
+		me.game.add(new ScrollerObject(0, 330),999);
+        me.game.sort();
 		
 		// start the main menu music 
 		// there is no just a Load function ?
@@ -139,7 +137,13 @@ var PlayScreen = me.ScreenObject.extend(
 		CODEF_AUDIO_NODE.connect(CODEF_AUDIO_CONTEXT.destination);
 	},
 	
-	
+	update: function()
+	{
+		// invalidate the HUD
+		console.log(me.game.HUD);
+		me.game.HUD.HUD_invalidated = true;
+		return true;
+	},
 	/* ---
 	
 		 action to perform when game is finished (state change)
@@ -161,98 +165,73 @@ var PlayScreen = me.ScreenObject.extend(
 });
 
 
-var LogoObject = me.HUD_Item.extend({
+var ScrollerObject = me.InvisibleEntity.extend({
     
     init: function(x, y) 
     {
         // call the parent constructor
-        this.parent(x, y);
-        this.maincanvas=new canvas(HUDCanvasSurface.canvas);
-        
-        me.sys.useNativeAnimFrame = false;
-        
-        // CODEF CODE      
-        this.logo = new image(me.loader.getImage("logo"));	
-	// END CODEF CODE
-    },
+        this.parent(x, y, {width:me.game.currentLevel.realwidth, height:34});
+		
+		// union demo logo
+		this.logo = new image(me.loader.getImage("logo"));	
+		
+		// reuse directly the main canvas
+        this.maincanvas=new canvas(me.video.getScreenCanvas());
 
-    draw: function(context, x, y) 
-    {
-   	// CODEF CODE
-        //this.maincanvas.fill('#000000');
-        this.logo.draw(this.maincanvas,194,0);
-        // END CODEF CODE
-        
-    },
-    
-});
-
-var ScrollerObject = me.HUD_Item.extend({
-    
-    init: function(x, y) 
-    {
-        // call the parent constructor
-        this.parent(x, y);
-        this.maincanvas=new canvas(HUDCanvasSurface.canvas);
-        
-        me.sys.useNativeAnimFrame = false;
-        
         // CODEF CODE
         this.mergecanvas  = new canvas(640,34);
         this.scrollrasters = new image(me.loader.getImage('scrollrasters'));
         this.panorama = new image(me.loader.getImage('panorama'));
         
-	this.fontOut = new image(me.loader.getImage('fontsTexOut'));
-	this.fontOut.initTile(32*2,17*2,32);
-	
-	this.scrolltextOut = new scrolltext_horizontal();
-	this.scrolltextOut.scrtxt="...... EVILO DOES NOT LIKE WHEN I REFACTOR HIS PORKY CODE !!!! EH EH EH....";
-	this.scrolltextOut.init(this.mergecanvas, this.fontOut, 1.5);     
-	
-	this.fontIn = new image(me.loader.getImage('fontsTexIn'));
-	this.fontIn.initTile(32*2,17*2,32);
-	
-	this.scrolltextIn = new scrolltext_horizontal();
-	this.scrolltextIn.scrtxt=this.scrolltextOut.scrtxt;
-	this.scrolltextIn.init(this.mergecanvas, this.fontIn, 1.5);     	
-	
-	this.posScroller = 0;
-	
-	// END CODEF CODE
+		this.fontOut = new image(me.loader.getImage('fontsTexOut'));
+		this.fontOut.initTile(32*2,17*2,32);
+		
+		this.scrolltextOut = new scrolltext_horizontal();
+		this.scrolltextOut.scrtxt="...... SHAZZ DOES NOT LIKE WHEN I REFACTOR HIS PORKY CODE !!!! EH EH EH....";
+		this.scrolltextOut.init(this.mergecanvas, this.fontOut, 2);     
+		
+		this.fontIn = new image(me.loader.getImage('fontsTexIn'));
+		this.fontIn.initTile(32*2,17*2,32);
+		
+		this.scrolltextIn = new scrolltext_horizontal();
+		this.scrolltextIn.scrtxt=this.scrolltextOut.scrtxt;
+		this.scrolltextIn.init(this.mergecanvas, this.fontIn, 2);     	
+		
+		this.posScroller = 0;
+		
+		// END CODEF CODE
     },
+	
+	update : function() {
+		return true;
+	},
 
-    draw: function(context, x, y) 
+	
+    draw: function(context) 
     {
-   	// CODEF CODE
-	
-	
-	this.maincanvas.contex.fillStyle = "#000000";
-	this.maincanvas.contex.fillRect (0, 340, 640, 28);  
-        
-        this.scrollrasters.draw(this.maincanvas, 0, 318);
-        
-        this.scrolltextIn.draw(0);  
-        this.mergecanvas.contex.globalCompositeOperation='source-in';
-	this.panorama.draw(this.mergecanvas, this.posScroller--, 0);
-	this.panorama.draw(this.mergecanvas, 640+this.posScroller, 0);
-	
-	if(this.posScroller <= -640) this.posScroller = 0;
-	
-	this.mergecanvas.contex.globalCompositeOperation='source-over';
-        this.scrolltextOut.draw(0); 
+		// CODEF CODE
+		
+		this.logo.draw(this.maincanvas,194,0);
+		
+		this.scrollrasters.draw(this.maincanvas, 0, 318);
+			
+		this.scrolltextIn.draw(0);  
+		this.mergecanvas.contex.globalCompositeOperation='source-in';
+		
+		this.panorama.draw(this.mergecanvas, this.posScroller--, 0);
+		this.panorama.draw(this.mergecanvas, 640+this.posScroller, 0);
+		
+		if(this.posScroller <= -640) this.posScroller = 0;
+		
+		this.mergecanvas.contex.globalCompositeOperation='source-over';
+		this.scrolltextOut.draw(0); 
         
         this.mergecanvas.draw(this.maincanvas, 0, 344)
-        
-        
+		
         // END CODEF CODE
         
-    },
-    
-    update: function()
-    {
-    	return true;
     }
-
+  
 });
 
 //bootstrap :)
