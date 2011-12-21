@@ -39,7 +39,7 @@
 			
 			// set the display to follow our position on horizontal axis
 			me.game.viewport.follow(this.pos, me.game.viewport.AXIS.HORIZONTAL);
-			me.game.viewport.setDeadzone(0);
+			me.game.viewport.setDeadzone(0, 0);
 			
 			// walking animation
 			this.addAnimation ("walk",  [0,1,2,3,4,5,6,7]);
@@ -49,6 +49,13 @@
 			
 			// adjust animation timing
 			this.animationspeed = me.sys.fps / 14;
+			
+			
+			// adjust the collision box
+			this.updateColRect(-1, -1 ,86,16);
+			
+			// some debugging stuff
+			//me.debug.renderHitBox = true;
 			
 		},
 	
@@ -73,14 +80,12 @@
 			
 			else if (me.input.isKeyPressed('up'))
 			{	
-				if (this.pos.y + this.vel.y >= 133) 
-					this.vel.y -= this.accel.y * me.timer.tick;		
+				this.vel.y -= this.accel.y * me.timer.tick;		
 			}
 			
 			else if (me.input.isKeyPressed('down'))
 			{	
-				if (this.pos.y + this.vel.y < 200) 
-					this.vel.y += this.accel.y * me.timer.tick;
+				this.vel.y += this.accel.y * me.timer.tick;
 			}
 			
 			
