@@ -48,7 +48,7 @@
 			this.setCurrentAnimation("walk");
 			
 			// adjust animation timing
-			this.animationspeed = me.sys.fps / 40;
+			this.animationspeed = me.sys.fps / 14;
 			
 		},
 	
@@ -60,7 +60,6 @@
 		------			*/
 		update : function ()
 		{
-				
 			if (me.input.isKeyPressed('left'))
 			{
 				this.vel.x -= this.accel.x * me.timer.tick;
@@ -127,7 +126,8 @@
 			if (me.input.isKeyPressed('enter'))
 			{
 				// save the player last pos
-				jsApp.entityPos = obj.pos.clone();
+				jsApp.entityPos = obj.pos.clone()
+				jsApp.entityPos.y = 180;
 				
 				// if screen exists, go for it !
 				
