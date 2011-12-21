@@ -52,7 +52,8 @@
 			
 			
 			// adjust the collision box
-			this.updateColRect(-1, -1 ,86,16);
+			this.updateColRect(-1, -1 ,86,22);
+
 			
 			// some debugging stuff
 			//me.debug.renderHitBox = true;
