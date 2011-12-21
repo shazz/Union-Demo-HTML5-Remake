@@ -79,7 +79,7 @@
 				this.flipX(false);
 			}
 			
-			else if (me.input.isKeyPressed('up'))
+			if (me.input.isKeyPressed('up'))
 			{	
 				this.vel.y -= this.accel.y * me.timer.tick;		
 			}
